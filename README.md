@@ -19,3 +19,9 @@
 
 1. リンクを作成したいページで拡張機能のアイコンをクリック
 2. 自動的に `<a href="URL" target="_blank">タイトル</a>` 形式でクリップボードにコピーされる
+
+## URL
+
+以下のページにGitHubのリポジトリがあります。
+
+https://github.com/sunadarake/chrome-extension-create-links
