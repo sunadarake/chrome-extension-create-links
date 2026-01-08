@@ -3,6 +3,8 @@
   "name": "Simple Create Link",
   "version": "1.0.0",
   "description": "現在のタブのURLとタイトルをリンク形式でクリップボードに保存",
+  "author": "sunadarake",
+  "homepage_url": "https://github.com/sunadarake/chrome-extension-create-links",
   "permissions": [
     "activeTab"
   ],
