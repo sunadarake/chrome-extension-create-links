@@ -25,3 +25,7 @@
 以下のページにGitHubのリポジトリがあります。
 
 https://github.com/sunadarake/chrome-extension-create-links
+
+## LICENCE
+
+MIT
