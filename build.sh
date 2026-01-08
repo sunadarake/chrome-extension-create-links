@@ -8,10 +8,11 @@ rm -rf dist
 mkdir -p dist
 
 # 親ディレクトリ名を取得
-DIR_NAME=$(basename "$PWD")
+app_name=$(basename "$PWD")
 
 # 拡張機能のファイルをzipに圧縮
-zip -r "dist/${DIR_NAME}.zip" . -x \
-    "*.git*" "*.DS_Store" ".gitattribute" ".gitignore" "node_modules/*" "*.sh" "dist/*"
+zip -r "dist/${app_name}.zip" . -x                     \
+    "*.git*" "*.DS_Store" ".gitattribute" ".gitignore" \
+    "node_modules/*" "*.sh" "dist/*" "screenshots/*"
 
-echo "✓ dist/${DIR_NAME}.zip が作成されました"
+echo "✓ dist/${app_name}.zip が作成されました"
