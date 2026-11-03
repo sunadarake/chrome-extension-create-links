@@ -46,7 +46,7 @@
 - [x] `./release.sh` で `release/chrome-extension-create-links-v1.0.0.zip` ができ、`manifest.json` が直下にあり、テストファイルを含まない
 - [x] `./release.sh` を 2 回実行しても `release/` に古い zip が残らない
 - [x] `shellcheck release.sh publish.sh` が通る（導入されていなければ `bash -n` で構文確認）
-- [ ] （未実施） `publish.sh` は実際に GitHub へ投稿するため、実行はユーザーが行う。実行後、draft が作成され、zip が添付され、Release Note の表示が正しいことを GitHub 上で確認する（確認後、不要なら draft を手動で削除）
+- [ ] （未実施） `publish.sh` は実際に GitHub へ公開するため、実行はユーザーが行う。実行後、Release が公開され、zip が添付され、Release Note の表示が正しいことを GitHub 上で確認する
 - [ ] （未実施） 同じ tag で `publish.sh` を再実行するとエラーで止まる
 - [x] `npm test` / `npm run lint` / `npx prettier --check .` が通る（シェルスクリプトは対象外）
 

@@ -15,7 +15,7 @@
 - lint: `npm run lint`（整形の確認は `npx prettier --check .`、整形は `npm run format`）
 - 型チェック: `npm run typecheck`
 - リリース: `./release.sh`（`manifest.json` と `icons/` と `src/` を `release/<ディレクトリ名>-v<version>.zip` にする。version は `manifest.json` から取る）
-- 投稿: `./publish.sh`（zip を GitHub に draft の Release として投稿する。外部への投稿なので実行前にユーザーに確認する。コミット・push 済みでないと止まる）
+- 投稿: `./publish.sh`（zip を GitHub に Release として公開する。外部への公開なので実行前にユーザーに確認する。コミット・push 済みでないと止まる）
 - 動作確認: `chrome://extensions/` でリポジトリのルートを「パッケージ化されていない拡張機能」として読み込む
 
 ## ディレクトリ構成
@@ -26,7 +26,7 @@
   - `popup.js` 処理の流れ（`run` に依存を渡して呼ぶ。Chrome APIやDOMへの依存はここで注入する）
   - `lib/` 純粋関数など（`escape-html.js`、`create-link.js`、`copy-text.js`）
 - `screenshots/` README用の画像
-- `release.sh` / `publish.sh` 配布用zipの作成と、GitHub Release への投稿スクリプト
+- `release.sh` / `publish.sh` 配布用zipの作成と、GitHub Release の公開スクリプト
 - `todo/` 実装計画（`/todo-plan` で作成、`/todo-refine` で詰める、`NNN-todo.md` 形式）
 - `.claude/skills/` と `.opencode/commands/` 開発支援用のスキル・コマンド定義（拡張機能の本体ではない）
 

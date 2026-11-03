@@ -1,6 +1,5 @@
 #!/bin/bash
-# release/ の zip を GitHub Release に draft として投稿するスクリプト。
-# 公開は GitHub 上で Release Note を確認してから手動で行う。
+# release/ の zip を GitHub Release として公開するスクリプト。
 set -euo pipefail
 
 version=$(jq -r .version manifest.json)
@@ -8,7 +7,7 @@ tag="v${version}"
 app_name=$(basename "$PWD")
 zip_path="release/${app_name}-v${version}.zip"
 
-# draft を公開すると tag は既定ブランチの先頭に付くため、
+# Release を作ると tag は既定ブランチの先頭に付くため、
 # 未コミット・未 push の内容が Release から漏れないようにする
 if [ -n "$(git status --porcelain)" ]; then
   echo "エラー: コミットされていない変更があります" >&2
@@ -39,4 +38,4 @@ notes=$(cat <<NOTES
 NOTES
 )
 
-gh release create "$tag" "$zip_path" --draft --title "$tag" --notes "$notes"
+gh release create "$tag" "$zip_path" --title "$tag" --notes "$notes"
