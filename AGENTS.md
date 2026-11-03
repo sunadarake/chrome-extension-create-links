@@ -14,18 +14,19 @@
 - テスト: `npm test`（テストは対象ファイルの隣に `*.test.js` で置く）
 - lint: `npm run lint`（整形の確認は `npx prettier --check .`、整形は `npm run format`）
 - 型チェック: `npm run typecheck`
-- ビルド: `./build.sh`（`manifest.json` と `src/` を `dist/<ディレクトリ名>.zip` にする。`dist/` はコミットしない）
+- リリース: `./release.sh`（`manifest.json` と `icons/` と `src/` を `release/<ディレクトリ名>-v<version>.zip` にする。version は `manifest.json` から取る）
+- 投稿: `./publish.sh`（zip を GitHub に draft の Release として投稿する。外部への投稿なので実行前にユーザーに確認する。コミット・push 済みでないと止まる）
 - 動作確認: `chrome://extensions/` でリポジトリのルートを「パッケージ化されていない拡張機能」として読み込む
 
 ## ディレクトリ構成
-- `manifest.json` 拡張機能の定義（ルートに置く。`src/` 内のファイルを参照する）
+- `manifest.json` 拡張機能の定義（ルートに置く。`src/` と `icons/` を参照する）
+- `icons/` アイコン
 - `src/` 拡張機能のコード
-  - `icons/` アイコン
   - `popup.html` / `popup.css` ポップアップの画面
   - `popup.js` 処理の流れ（`run` に依存を渡して呼ぶ。Chrome APIやDOMへの依存はここで注入する）
   - `lib/` 純粋関数など（`escape-html.js`、`create-link.js`、`copy-text.js`）
 - `screenshots/` README用の画像
-- `build.sh` 配布用zipの作成スクリプト
+- `release.sh` / `publish.sh` 配布用zipの作成と、GitHub Release への投稿スクリプト
 - `todo/` 実装計画（`/todo-plan` で作成、`/todo-refine` で詰める、`NNN-todo.md` 形式）
 - `.claude/skills/` と `.opencode/commands/` 開発支援用のスキル・コマンド定義（拡張機能の本体ではない）
 
@@ -53,5 +54,5 @@
 - `.env`、認証情報、秘密鍵をコミットしない
 - `git push`、`git reset --hard`、強制的な上書きをしない
 - テストを通すためにテストを弱めたり、無効にしたりしない
-- `dist/` や `*.zip` などのビルド成果物をコミットしない
+- `release/` や `*.zip` などのビルド成果物をコミットしない
 - `package-lock.json` はコミットする（`.gitignore` に入れない）

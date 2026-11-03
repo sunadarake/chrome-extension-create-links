@@ -40,7 +40,7 @@ $RECYCLE.BIN/
 .nfs*
 
 # Build output
-dist/
+release/
 coverage/
 *.zip
 

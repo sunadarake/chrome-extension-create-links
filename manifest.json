@@ -7,17 +7,17 @@
   "homepage_url": "https://github.com/sunadarake/chrome-extension-create-links",
   "permissions": ["activeTab"],
   "icons": {
-    "16": "src/icons/icon16.png",
-    "48": "src/icons/icon48.png",
-    "128": "src/icons/icon128.png"
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   },
   "action": {
     "default_title": "Simple Create Link",
     "default_popup": "src/popup.html",
     "default_icon": {
-      "16": "src/icons/icon16.png",
-      "32": "src/icons/icon32.png",
-      "48": "src/icons/icon48.png"
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
     }
   }
 }

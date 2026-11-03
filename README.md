@@ -38,5 +38,6 @@ npm test             # テスト (vitest)
 npm run lint         # ESLint
 npm run typecheck    # 型チェック (tsc --checkJs)
 npm run format       # Prettier で整形
-./build.sh           # dist/ に配布用 zip を作成
+./release.sh         # release/ に配布用 zip を作成
+./publish.sh         # GitHub に draft の Release を作成
 ```
