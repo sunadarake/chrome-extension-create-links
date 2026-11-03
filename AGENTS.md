@@ -4,22 +4,27 @@
 拡張機能のアイコンをクリックするとポップアップが開き、コピー後に自動で閉じる。
 
 ## 技術スタック
-- 言語: JavaScript（素のJS、ビルド工程・外部ライブラリなし）
+- 言語: JavaScript（ES Modules。バンドラなし、型は JSDoc + `tsc --checkJs`）
 - フレームワーク: なし（Chrome Extension Manifest V3、権限は `activeTab` のみ）
-- パッケージ管理: なし（`package.json` はない）
+- パッケージ管理: npm（開発用ツールのみ。拡張機能本体に外部ライブラリはない）
+- 開発ツール: vitest（jsdom）、ESLint、Prettier、TypeScript（型チェックのみ）
 
 ## コマンド
-- セットアップ: 不要
-- テスト: なし（`chrome://extensions/` で「パッケージ化されていない拡張機能を読み込む」を使い、手動で動作確認する）
-- lint: なし
-- 型チェック: なし
-- ビルド: `./build.sh`（`dist/<ディレクトリ名>.zip` を作成する。`dist/` はコミットしない）
+- セットアップ: `npm install`
+- テスト: `npm test`（テストは対象ファイルの隣に `*.test.js` で置く）
+- lint: `npm run lint`（整形の確認は `npx prettier --check .`、整形は `npm run format`）
+- 型チェック: `npm run typecheck`
+- ビルド: `./build.sh`（`manifest.json` と `src/` を `dist/<ディレクトリ名>.zip` にする。`dist/` はコミットしない）
+- 動作確認: `chrome://extensions/` でリポジトリのルートを「パッケージ化されていない拡張機能」として読み込む
 
 ## ディレクトリ構成
-- `manifest.json` 拡張機能の定義
-- `popup.html` / `popup.css` / `popup.js` ポップアップの画面と、コピー処理の本体
-- `icons/` 拡張機能のアイコン
-- `screenshots/` README用の画像（ビルドのzipには含めない）
+- `manifest.json` 拡張機能の定義（ルートに置く。`src/` 内のファイルを参照する）
+- `src/` 拡張機能のコード
+  - `icons/` アイコン
+  - `popup.html` / `popup.css` ポップアップの画面
+  - `popup.js` 処理の流れ（`run` に依存を渡して呼ぶ。Chrome APIやDOMへの依存はここで注入する）
+  - `lib/` 純粋関数など（`escape-html.js`、`create-link.js`、`copy-text.js`）
+- `screenshots/` README用の画像
 - `build.sh` 配布用zipの作成スクリプト
 - `todo/` 実装計画（`/todo-plan` で作成、`/todo-refine` で詰める、`NNN-todo.md` 形式）
 - `.claude/skills/` と `.opencode/commands/` 開発支援用のスキル・コマンド定義（拡張機能の本体ではない）
@@ -28,7 +33,7 @@
 - 作業の前に、関連するコードと仕様を読んで理解する
 - 不明点や判断が分かれる点は、推測で進めずに質問する
 - 依頼された範囲だけを変更する。範囲外で必要な変更に気づいたら報告する
-- 作業の完了前に、テスト・lint・型チェックを実行して通ることを確認する（このプロジェクトには自動のものがないため、拡張機能を読み込んで手動で確認する）
+- 作業の完了前に、テスト・lint・型チェックを実行して通ることを確認する
 
 ## コーディング規約
 - 既存コードの書き方（命名、構成、エラー処理）に合わせる
@@ -36,8 +41,8 @@
 - コメントは日本語（UTF-8）で、コードを読んでも分からない「なぜ」だけを書く
 - 不要な防御処理（過剰なnullチェック、エラーの握りつぶし）を書かない
 - 使わなくなったコード、デバッグ用のログは残さない
-- コピーは `navigator.clipboard` ではなく、textareaと `document.execCommand('copy')` で行っている。ポップアップ内で確実にコピーするためなので、変える場合は動作確認する
-- URLとタイトルは `escapeHtml` でエスケープしてからHTMLに埋め込む
+- コピーは `navigator.clipboard` ではなく、textareaと `document.execCommand('copy')` で行っている。ポップアップ内で確実にコピーするためなので、変える場合は実機で動作確認する
+- URLとタイトルは `escapeHtml` でエスケープしてからHTMLに埋め込む（`createLinkHtml` を使う）
 
 ## コミット
 - メッセージは日本語で、1行目は変更内容が一目で分かる50文字程度にする
@@ -49,3 +54,4 @@
 - `git push`、`git reset --hard`、強制的な上書きをしない
 - テストを通すためにテストを弱めたり、無効にしたりしない
 - `dist/` や `*.zip` などのビルド成果物をコミットしない
+- `package-lock.json` はコミットする（`.gitignore` に入れない）

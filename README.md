@@ -13,7 +13,7 @@
 1. `chrome://extensions/` にアクセス
 2. 右上の「デベロッパーモード」をオンにする
 3. 「パッケージ化されていない拡張機能を読み込む」をクリック
-4. このディレクトリを選択
+4. このリポジトリのルートディレクトリ（`manifest.json` がある場所）を選択
 
 ## 使い方
 
@@ -29,3 +29,14 @@ https://github.com/sunadarake/chrome-extension-create-links
 ## LICENCE
 
 MIT
+
+## 開発
+
+```bash
+npm install          # 依存のインストール
+npm test             # テスト (vitest)
+npm run lint         # ESLint
+npm run typecheck    # 型チェック (tsc --checkJs)
+npm run format       # Prettier で整形
+./build.sh           # dist/ に配布用 zip を作成
+```
