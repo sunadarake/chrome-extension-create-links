@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Simple Create Link",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "現在のタブのURLとタイトルをリンク形式でクリップボードに保存",
   "author": "sunadarake",
   "homepage_url": "https://github.com/sunadarake/chrome-extension-create-links",
