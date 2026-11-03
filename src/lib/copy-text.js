@@ -2,11 +2,10 @@
  * textarea と execCommand でクリップボードにコピーする。
  * ポップアップ内で確実にコピーするため、navigator.clipboard は使わない。
  * @param {string} text
- * @param {Document} [doc]
  * @returns {boolean} コピーに成功したか
  */
-export function copyText(text, doc = document) {
-  const textarea = doc.createElement('textarea');
+export function copyText(text) {
+  const textarea = document.createElement('textarea');
   textarea.value = text;
   textarea.style.position = 'fixed';
   textarea.style.top = '0';
@@ -19,11 +18,11 @@ export function copyText(text, doc = document) {
   textarea.style.boxShadow = 'none';
   textarea.style.background = 'transparent';
 
-  doc.body.appendChild(textarea);
+  document.body.appendChild(textarea);
   textarea.focus();
   textarea.select();
 
-  const successful = doc.execCommand('copy');
-  doc.body.removeChild(textarea);
+  const successful = document.execCommand('copy');
+  document.body.removeChild(textarea);
   return successful;
 }

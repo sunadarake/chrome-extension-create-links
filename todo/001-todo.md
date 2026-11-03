@@ -21,7 +21,7 @@
 ### 2. 設計見直し（純粋関数への分離）
 - [x] `src/lib/escape-html.js`: `escapeHtml(text)`（既存ロジックをそのまま移す）
 - [x] `src/lib/create-link.js`: `createLinkHtml(url, title)`（エスケープ込みで `<a ...>` 文字列を返す純粋関数）
-- [x] `src/lib/copy-text.js`: `copyText(text, doc = document)`（textarea + `execCommand`。成功可否を boolean で返し、`doc` を引数にして差し替え可能にする）
+- [x] `src/lib/copy-text.js`: `copyText(text)`（textarea + `execCommand`。成功可否を boolean で返す）
 - [x] `src/popup.js`: `run({ queryTabs, copy, messageEl, close })` を export。タブ取得 → リンク生成 → コピー → メッセージ表示 → 自動クローズを担当。`DOMContentLoaded` で実物の依存（`chrome.tabs.query`、`copyText`、`window.close`）を渡して呼ぶ
 - [x] `popup.html` の script を `type="module"` にする
 - [x] 自動クローズ待ち時間の定数とコメントを実際の 500ms に合わせる
