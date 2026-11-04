@@ -1,6 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Simple Create Link",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAitNa7iNbPLRmVKkIMTvnlXveh/bm6iCWV6r5MXYOhJyIABls7URao1Wt5nvibqLDPoGoC4r206ctBLHZusGn4Puzp0TqBfJla7RZJsn96tOPgqFMFzZ+3dQNfgLU/psjio5zrzjTauAn1VtLibe5gRg5nl1O/X3tVbVuoNgM/u+tKq4Ihy/mbvQ4cpxyhYRHSW9U1E4FkiEKsVrPZrUcT8fqGC/eBdTTr+yyhVaxAszCY/7Srqt2eq9kE/qnN3vytSP/YV8eFjWn1ZdeeueV7cUwgiayQLX+7TRw07Qkc2EohxaXrLB9yWNDGwyYFgqRS3N98yVROKTqSxdpfNIthQIDAQAB",
   "version": "1.0.1",
   "description": "現在のタブのURLとタイトルをリンク形式でクリップボードに保存",
   "author": "sunadarake",
