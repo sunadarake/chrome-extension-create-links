@@ -69,3 +69,6 @@ logs/
 tmp/
 temp/
 *.tmp
+
+# Secrets
+key.pem
