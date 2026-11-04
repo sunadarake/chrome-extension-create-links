@@ -6,7 +6,11 @@
   "description": "現在のタブのURLとタイトルをリンク形式でクリップボードに保存",
   "author": "sunadarake",
   "homepage_url": "https://github.com/sunadarake/chrome-extension-create-links",
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "storage"],
+  "options_ui": {
+    "page": "src/options.html",
+    "open_in_tab": true
+  },
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",

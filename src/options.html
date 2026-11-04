@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="options.css" />
+    <title>Simple Create Link の設定</title>
+  </head>
+  <body>
+    <h1>Simple Create Link の設定</h1>
+
+    <fieldset>
+      <legend>出力形式</legend>
+      <label><input type="radio" name="format" value="html" /> HTML</label>
+      <label
+        ><input type="radio" name="format" value="markdown" /> Markdown</label
+      >
+      <label><input type="radio" name="format" value="url" /> URLのみ</label>
+      <label
+        ><input type="radio" name="format" value="title" /> タイトルのみ</label
+      >
+    </fieldset>
+
+    <fieldset id="html-options">
+      <legend>HTML の設定</legend>
+      <label>
+        target
+        <select id="target">
+          <option value="">指定しない</option>
+          <option value="_blank">_blank</option>
+          <option value="_self">_self</option>
+        </select>
+      </label>
+      <label
+        ><input type="checkbox" id="noopener" /> rel="noopener noreferrer"
+        を付ける</label
+      >
+    </fieldset>
+
+    <fieldset>
+      <legend>タイトル</legend>
+      <label
+        ><input type="checkbox" id="tidy-title" />
+        前後の空白を除き、連続する空白を1つにする</label
+      >
+    </fieldset>
+
+    <h2>プレビュー</h2>
+    <pre id="preview"></pre>
+
+    <button type="button" id="reset">初期値に戻す</button>
+    <span id="status"></span>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

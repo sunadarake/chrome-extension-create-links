@@ -2,10 +2,11 @@
 
 現在のタブのURLとタイトルを `<a href="URL" target="_blank">タイトル</a>` 形式でクリップボードにコピーするChrome拡張機能（Manifest V3）。
 拡張機能のアイコンをクリックするとポップアップが開き、コピー後に自動で閉じる。
+出力形式（HTML / Markdown / URLのみ / タイトルのみ）、target、rel、タイトル整形はオプションページで設定でき、`chrome.storage.local` に保存する。初期値は上記の形式。
 
 ## 技術スタック
 - 言語: JavaScript（ES Modules。バンドラなし、型は JSDoc + `tsc --checkJs`）
-- フレームワーク: なし（Chrome Extension Manifest V3、権限は `activeTab` のみ）
+- フレームワーク: なし（Chrome Extension Manifest V3、権限は `activeTab` と `storage`）
 - パッケージ管理: npm（開発用ツールのみ。拡張機能本体に外部ライブラリはない）
 - 開発ツール: vitest（jsdom）、ESLint、Prettier、TypeScript（型チェックのみ）
 
@@ -24,7 +25,8 @@
 - `src/` 拡張機能のコード
   - `popup.html` / `popup.css` ポップアップの画面
   - `popup.js` 処理の流れ（`run` に依存を渡して呼ぶ。Chrome APIやDOMへの依存はここで注入する）
-  - `lib/` 純粋関数など（`escape-html.js`、`create-link.js`、`copy-text.js`）
+  - `options.html` / `options.css` / `options.js` オプションページ（`init` に依存を渡して呼ぶ）
+  - `lib/` 純粋関数など（`escape-html.js`、`create-link.js`、`copy-text.js`、`options.js`）
 - `screenshots/` README用の画像
 - `release.sh` / `publish.sh` 配布用zipの作成と、GitHub Release の公開スクリプト
 - `todo/` 実装計画（`/todo-plan` で作成、`/todo-refine` で詰める、`NNN-todo.md` 形式）
@@ -43,7 +45,7 @@
 - 不要な防御処理（過剰なnullチェック、エラーの握りつぶし）を書かない
 - 使わなくなったコード、デバッグ用のログは残さない
 - コピーは `navigator.clipboard` ではなく、textareaと `document.execCommand('copy')` で行っている。ポップアップ内で確実にコピーするためなので、変える場合は実機で動作確認する
-- URLとタイトルは `escapeHtml` でエスケープしてからHTMLに埋め込む（`createLinkHtml` を使う）
+- URLとタイトルは `escapeHtml` でエスケープしてからHTMLに埋め込む（`createLink` を使う）
 
 ## コミット
 - メッセージは日本語で、1行目は変更内容が一目で分かる50文字程度にする
