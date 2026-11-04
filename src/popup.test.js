@@ -31,7 +31,8 @@ describe('run', () => {
     expect(copy).toHaveBeenCalledWith(
       '<a href="https://example.com/" target="_blank">Example</a>',
     );
-    expect(messageEl.textContent).toBe('コピーしました');
+    expect(messageEl.textContent).toBe('✅ コピーしました');
+    expect(messageEl.className).toBe('success');
     expect(close).not.toHaveBeenCalled();
     vi.advanceTimersByTime(CLOSE_DELAY_MS);
     expect(close).toHaveBeenCalledOnce();
@@ -48,7 +49,8 @@ describe('run', () => {
       close,
     });
 
-    expect(messageEl.textContent).toBe('エラー: タブが見つかりません');
+    expect(messageEl.textContent).toBe('❌ エラー: タブが見つかりません');
+    expect(messageEl.className).toBe('error');
     expect(copy).not.toHaveBeenCalled();
     vi.advanceTimersByTime(CLOSE_DELAY_MS);
     expect(close).not.toHaveBeenCalled();
@@ -61,7 +63,8 @@ describe('run', () => {
 
     await run({ queryTabs, loadOptions, copy: () => false, messageEl, close });
 
-    expect(messageEl.textContent).toBe('エラー: コピーに失敗しました');
+    expect(messageEl.textContent).toBe('❌ エラー: コピーに失敗しました');
+    expect(messageEl.className).toBe('error');
     vi.advanceTimersByTime(CLOSE_DELAY_MS);
     expect(close).not.toHaveBeenCalled();
   });

@@ -26,10 +26,12 @@ export async function run({ queryTabs, loadOptions, copy, messageEl, close }) {
       throw new Error('コピーに失敗しました');
     }
 
-    messageEl.textContent = 'コピーしました';
+    messageEl.className = 'success';
+    messageEl.textContent = '✅ コピーしました';
     setTimeout(close, CLOSE_DELAY_MS);
   } catch (error) {
-    messageEl.textContent = `エラー: ${/** @type {Error} */ (error).message}`;
+    messageEl.className = 'error';
+    messageEl.textContent = `❌ エラー: ${/** @type {Error} */ (error).message}`;
   }
 }
 
